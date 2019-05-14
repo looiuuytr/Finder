@@ -26,12 +26,18 @@
                 $.get('/search?searchBar=' + search_args, function(data) {
 
                     for (var track in data) {
-                        console.log(data[track]);
+                        $.get('/play?name=' + data[track].track.track_name + "&artist=" + data[track].track.artist_name, function(song) {
+                            if (song !== "") {
+                                $("#tracks").append('<div class="track "><div><iframe src="https://open.spotify.com/embed/track/' + song.split(":").pop() + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div></div>');
+                            }
+                            return;
+                        });
 
-                        $("#tracks").append("<div class='track'>" + data[track].track.track_name + "</div>");
                     }
                 });
             }
+
+
 
             $('#formSearchMin').submit(() => {
                 search(arg);
@@ -42,13 +48,12 @@
 </head>
 
 <body>
-    <div id="background"></div>
 
     <center id="content">
 
         <div id="searchBlockMin">
             <form method="get" action="" id="formSearchMin">
-                <h1 id="titleMin">Finder</h1>
+                <a href="/" id="titleMin">Finder</a>
                 <input placeholder="Search for a song..." type="text" name="searchBar" id="searchBar" />
                 <input id="searchButton" type="submit" name="send" value="Search">
 
