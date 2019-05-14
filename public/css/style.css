@@ -1,0 +1,112 @@
+h1 {
+    font-family: 'Baloo Bhaina', cursive;
+    color: rgb(251, 251, 251);
+    font-size: 7em;
+    margin-bottom: 0px;
+    padding-bottom: 0;
+    line-height: 1em;
+    margin-top: 100px;
+}
+
+h2 {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: rgba(251, 251, 251, 0.82);
+    font-size: 2.5em;
+    margin-top: 0px;
+}
+
+body {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-image: url("../images/background.jpg");
+    margin: 0;
+}
+
+#content {
+    position: absolute;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.56);
+    margin: 0px;
+}
+
+#formSearch {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    width: 280px;
+}
+
+#searchBar {
+    width: 280px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
+    color: #fff;
+    font-family: 'Exo', sans-serif;
+    font-size: 1.25em;
+    font-weight: 400;
+    padding: 4px;
+    margin-bottom: 10px;
+}
+
+#searchButton {
+    width: 280px;
+    height: 35px;
+    background: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    border-radius: 2px;
+    color: #a18d6c;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 6px;
+    margin-top: 10px;
+}
+
+#searchBlock {
+    margin-top: 100px;
+}
+
+h3 {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: rgb(251, 251, 251);
+}
+
+@media only screen and (max-width: 550px) {
+    h1 {
+        font-family: 'Baloo Bhaina', cursive;
+        color: rgb(251, 251, 251);
+        font-size: 5em;
+        margin-bottom: 0px;
+        padding-bottom: 0;
+        line-height: 1em;
+        margin-top: 50px;
+    }
+    h2 {
+        font-family: 'Source Sans Pro', sans-serif;
+        color: rgba(251, 251, 251, 0.82);
+        font-size: 1.5em;
+        margin-top: 0px;
+    }
+    #blocRecherche {
+        margin-top: 40px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    h1 {
+        font-size: 4em;
+    }
+}
