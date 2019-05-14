@@ -34,7 +34,7 @@ router.get('/search', function(req, res) {
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
             tracks = JSON.parse(data).message.body.track_list;
-            console.log(tracks);
+            //console.log(tracks);
             res.send(tracks);
 
 
