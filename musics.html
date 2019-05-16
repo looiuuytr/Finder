@@ -6,6 +6,7 @@
     <!-- <script type="text/javascript" src="background.js"></script> -->
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
@@ -24,8 +25,7 @@
             function search(search_args) {
                 $("#tracks").html("");
                 $.get('/search?searchBar=' + search_args, function(data) {
-
-                    for (let track in data) {
+                    for (let track in data) {                        
                         $.get('/play?name=' + data[track].track.track_name + "&artist=" + data[track].track.artist_name, function(song) {
                             if (song !== "") {
                                 $("#tracks").append('<div class="track "><div><iframe src="https://open.spotify.com/embed/track/' + song.split(":").pop() + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div></div>');
@@ -36,6 +36,8 @@
                     }
                 });
             }
+
+            $("#lyrics").html('Showing results for "'+arg+'".');
 
 
 
@@ -48,18 +50,19 @@
 </head>
 
 <body>
+    <a href="/" id="titleMin">Finder</a>
 
     <center id="content">
 
         <div id="searchBlockMin">
             <form method="get" action="" id="formSearchMin">
-                <a href="/" id="titleMin">Finder</a>
                 <input placeholder="Type your lyrics..." type="text" name="searchBar" id="searchBar" />
-                <input id="searchButton" type="submit" name="send" value="Search">
-
-
+                <button id="searchButtonMin" type="submit" name="send"><i class="fa fa-search"></i></button>
             </form>
         </div>
+
+        <p id="lyrics"></p>
+
         <div id="tracks"></div>
     </center>
 

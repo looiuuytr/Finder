@@ -57,7 +57,7 @@ router.get('/search', function(req, res) {
     }
 
     const apiRouteUrl = "http://api.musixmatch.com/ws/1.1/track.search?q_lyrics=";
-    const params = "&page_size=30&page=1&s_track_rating=desc&apikey=5165cb025de6c85ef26ca5a8019c3c4e";
+    const params = "&page_size=15&page=1&s_track_rating=desc&apikey=5165cb025de6c85ef26ca5a8019c3c4e";
 
     let tracks;
 

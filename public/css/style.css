@@ -15,6 +15,9 @@ h1 {
     line-height: 1em;
     margin-top: 00px;
     text-decoration: none;
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 10px;
 }
 
 h2 {
@@ -60,7 +63,7 @@ body {
     display: flex;
     margin: auto;
     width: auto;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 10px;
 }
 
@@ -104,8 +107,43 @@ body {
     margin-top: 10px;
 }
 
+#searchButtonMin {
+        transition-property: background;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+    transition-delay: 0s;
+    height: 40px;
+    width: 60px;
+    background: #1763c5;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    color: white;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 6px;
+
+}
+#searchButtonMin:hover {
+    background: #1e70db;
+}
 #searchBlock {
     margin-top: 100px;
+}
+
+#lyrics {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    width: auto;
+    display: inline-block;
+    font-size: 17px;
+    padding: 5px;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 h3 {
