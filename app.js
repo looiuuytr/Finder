@@ -5,6 +5,7 @@ const path = require('path');
 const SpotifyWebApi = require('spotify-web-api-node');
 const router = express.Router();
 
+//The spotifyApi object to use the spotify easily
 const spotifyApi = new SpotifyWebApi({
     clientId: '515a6059023f42dabdc11f7722a731e3',
     clientSecret: '9b362d17ab8e49e1bba81eec59e4fe9b',
@@ -15,6 +16,7 @@ var scopes = ['user-top-read'];
 var showDialog = true;
 var authorizeURL = spotifyApi.createAuthorizeURL(scopes, null, showDialog);
 
+//the endpoint where we retrieve the token from spotify using the authorization code
 app.get("/callback", async function (request, res) {
     var authorizationCode = request.query.code;
     const data = await spotifyApi.authorizationCodeGrant(authorizationCode);
@@ -44,6 +46,7 @@ router.get('/', function(req, res) {
 router.get('/home', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
+
 router.get('/musics', function(req, res) {
     if (spotifyApi.getAccessToken() === undefined) {
         res.redirect(authorizeURL);
@@ -78,7 +81,7 @@ router.get('/search', function(req, res) {
         });
 
     }).on("error", (err) => {
-        //console.log("Error: " + err.message);
+        console.log("Error: " + err.message);
     });
 
 
@@ -88,14 +91,14 @@ router.get('/search', function(req, res) {
 router.get('/play', async function(req, res) {
 
     try{
-    // Do search using the access token
-    const data = await spotifyApi.searchTracks('track:' + req.query.name + ' artist:' + req.query.artist , { limit: 1 });
+        // Do search using the access token
+        const data = await spotifyApi.searchTracks('track:' + req.query.name + ' artist:' + req.query.artist , { limit: 1 });
 
-    if (data.body.tracks.items[0]) {
-        res.send(data.body.tracks.items[0].uri);
-    } else {
-        res.send("");
-    }
+        if (data.body.tracks.items[0]) {
+            res.send(data.body.tracks.items[0].uri);
+        } else {
+            res.send("");
+        }
 
     }catch(err){
         console.log(err)
