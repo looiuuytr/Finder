@@ -13,6 +13,9 @@
     <script type="text/javascript">
         $(document).ready(() => {
 
+            //start loading
+            $(".lds-ring").show();
+            
             const apiRouteUrl = "http://api.musixmatch.com/ws/1.1/track.search?q_lyrics=";
             const params = "&page_size=10&page=1&s_track_rating=desc&apikey=5165cb025de6c85ef26ca5a8019c3c4e"
 
@@ -20,21 +23,29 @@
             let url = new URL(url_string);
             let arg = url.searchParams.get("searchBar");
 
-            search(arg);
 
-            function search(search_args) {
+            search(arg).then(function() {
+                //end loading anyway
+                $(".lds-ring").hide();
+            });
+
+
+            async function search(search_args) {
                 $("#tracks").html("");
-                $.get('/search?searchBar=' + search_args, function(data) {
-                    for (let track in data) {                        
-                        $.get('/play?name=' + data[track].track.track_name + "&artist=" + data[track].track.artist_name, function(song) {
-                            if (song !== "") {
-                                $("#tracks").append('<div class="track "><div><iframe src="https://open.spotify.com/embed/track/' + song.split(":").pop() + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div></div>');
-                            }
-                            return;
-                        });
 
+                const data = await $.get('/search?searchBar=' + search_args);
+                for (let track in data) {                        
+                    const song = await $.get('/play?name=' + data[track].track.track_name + "&artist=" + data[track].track.artist_name);
+                    if (song !== "") {
+                        //remove the loader on first result
+
+                        $("#tracks").append('<div class="track "><div><iframe src="https://open.spotify.com/embed/track/' + song.split(":").pop() + '" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div></div>');
                     }
-                });
+                    
+               
+
+                }
+                
             }
 
             $("#lyrics").html('Showing results for "'+arg+'".');
@@ -53,6 +64,8 @@
     <a href="/" id="titleMin">Finder</a>
 
     <center id="content">
+        
+        
 
         <div id="searchBlockMin">
             <form method="get" action="" id="formSearchMin">
@@ -60,8 +73,8 @@
                 <button id="searchButtonMin" type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
-
-        <p id="lyrics"></p>
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <p id="lyrics"></p> 
 
         <div id="tracks"></div>
     </center>
