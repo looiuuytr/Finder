@@ -3,7 +3,7 @@ Finder is a little project that can find musics using lyrics and play them on sp
 
 ##Installation
 
-Require node.js
+Require node.js v10+
 
 And the following npm install :
     npm install express --save
