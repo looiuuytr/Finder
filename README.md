@@ -1,4 +1,4 @@
-# blokur_app
+# Finder
 Finder is a little project that can find musics using lyrics and play them on spotify.
 
 ##Installation
